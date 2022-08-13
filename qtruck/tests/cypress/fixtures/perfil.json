@@ -1,8 +1,13 @@
 {
     "titulo": "Qtruck",
     "nome": "Quin",
-    "instagram": "@qnery",
-    "senha": "123456",
-    "senhaInvalida": "321321"
+    "loginValido":{
+        "instagram": "@qnery",
+        "senha": "123456"
+    },
+  "loginInvalido":{
+      "instagramInvalido": "@blabla",
+      "senhaInvalida": "321321"
 
+  }
 }
