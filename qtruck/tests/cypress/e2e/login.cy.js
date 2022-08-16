@@ -26,14 +26,14 @@ describe('Login', () => {
     cy.modalHaveText('Credenciais inválidas, tente novamente!')
   });
 
-  //Desafio 1
+  //Desafio 1  
   it('Instagram must be mandatory', () => {
-    cy.loginInstagramBlank(profile.validLogin.password);
+    cy.login(`{backspace}`, profile.validLogin.password);
     cy.modalHaveText('Por favor, informe o seu código do Instagram!')
   });
 
   it('Password must be mandatory', () => {
-    cy.loginPasswordBlank(profile.validLogin.instagram);
+    cy.login(profile.validLogin.instagram, `{backspace}`);
     cy.modalHaveText('Por favor, informe a sua senha secreta!')
   });
   
