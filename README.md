@@ -33,6 +33,19 @@ npm install cypress@10.4.0 --save-dev
    npx cypress open
 ```
 
+#### Iniciar o serviço backend:
+
+```shell
+Executar dev em npm scripts
+```
+
+#### Iniciar o serviço frontend:
+
+```shell
+   Executar dev em npm scripts
+```
+
+
 #### Para executar em modo headless:
 
 ```shell
