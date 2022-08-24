@@ -1,5 +1,7 @@
 const { defineConfig } = require("cypress");
 const { cypressBrowserPermissionsPlugin } = require('cypress-browser-permissions')
+const mongo = require('cypress-mongodb')
+
 
 
 module.exports = defineConfig({
@@ -7,6 +9,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
       config = cypressBrowserPermissionsPlugin(on, config)
+      mongo.configurePlugin(on)
       return config
 
     },
@@ -20,10 +23,15 @@ module.exports = defineConfig({
     //Tudo que era no cypress.json, agora entra aqui
     env: {
       //Configurando aqui as permissões do browser com cypressBrowserPermissionsPlugin
-      browserPermissions:{
+      browserPermissions: {
         notifications: "allow",
         geolocation: "allow"
+      },
+      mongodb: {
+        'uri': 'mongodb+srv://quintiliano:Q_P_N1995@cluster0.fjf5ifs.mongodb.net/QtruckDB?retryWrites=true&w=majority',
+        'database': 'QtruckDB'
       }
+
     }
   },
 });

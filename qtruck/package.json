@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "cypress-mongodb": "^4.1.1"
+  }
+}
