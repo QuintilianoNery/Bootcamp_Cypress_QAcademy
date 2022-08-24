@@ -1,13 +1,16 @@
 {
     "title": "Qtruck",
     "name": "Quin",
-    "validLogin":{
+    "validLogin": {
         "instagram": "@qnery",
         "password": "123456"
     },
-  "invalidLogin":{
-      "InvalidInstagram": "@blabla",
-      "invalidPassword": "321321"
-
-  }
+    "invalidLogin": {
+        "instagram": "@blabla",
+        "password": "321321"
+    },
+    "nullLogin": {
+        "instagram": "",
+        "password": ""
+    }
 }

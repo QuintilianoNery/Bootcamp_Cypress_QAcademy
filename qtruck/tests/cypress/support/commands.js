@@ -26,8 +26,9 @@
 
 Cypress.Commands.add('login', (instagram, password) => {
   //Aqui se passa o parâmetro instagram e senha para o método login que vai ser digitado no teste
-  cy.get('input[name="instagram"]').type(instagram, { log: false });
-  cy.get('input[name="password"]').type(password, { log: false });
+  if(instagram) cy.get('input[name="instagram"]').type(instagram, { log: false });
+  if(password) cy.get('input[name="password"]').type(password, { log: false });
+  
   cy.get('button[type="submit"]').click();
 })
 
