@@ -1,4 +1,10 @@
+import modal from '../components/modal'
 class LoginPage {
+    //Construtor com a característica Moal
+    constructor(){
+        this.modal = modal
+    }
+
     //Função
     go() {
         cy.visit('/')
