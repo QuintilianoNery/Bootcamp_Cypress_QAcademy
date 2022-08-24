@@ -1,19 +1,17 @@
 /// <reference types="cypress" />
 const profile = require('../fixtures/profile');
+import loginPage from '../support/pages/Login'
 
 
 describe('Login', () => {
   beforeEach(() => {
-    cy.visit('/');
+    loginPage.go()
   });
-
   //Login com sucesso
-  //Utilizando Custom Commands, apenas se passa os valores de cada comando personalizado
-  //nesse caso estou passando os valores da minha massa de dados que está em fixtures
-  it('Must login successfully', () => {
-    cy.login(profile.validLogin.instagram, profile.validLogin.password);
-    cy.loggedUser(profile.name);
 
+  it.only('Must login successfully', () => {
+    loginPage.form(profile.validLogin.instagram, profile.validLogin.password)
+    loginPage.submit()
   })
 
   it('Must not login with incorrect password', () => {
@@ -36,7 +34,7 @@ describe('Login', () => {
     cy.login(profile.validLogin.instagram, profile.nullLogin.password);
     cy.modalHaveText('Por favor, informe a sua senha secreta!')
   });
-  
+
   it('All fields are mandatory', () => {
     cy.get('button[type="submit"]').click();
     cy.modalHaveText('Por favor, informe suas credenciais!')
