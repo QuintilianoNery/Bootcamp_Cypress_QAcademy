@@ -30,7 +30,7 @@ describe('Signup', () => {
 
     })
 
-    it.only('Não deve cadastrar com instagram duplicado', () => {
+    it('Não deve cadastrar com instagram duplicado', () => {
         const user = {
             name: 'Quin Duplicado',
             instagram: '@quin_duplicado',
