@@ -76,7 +76,7 @@ function Login() {
 
             <h2>Acesse sua conta</h2>
 
-            <div data-testid='login' className="input-block">
+            <div className="input-block">
               <input
                 name="instagram"
                 placeholder="Código do Instagram"
@@ -85,7 +85,7 @@ function Login() {
               />
             </div>
 
-            <div data-testid='senha' className="input-block">
+            <div className="input-block">
               <input
                 name="password"
                 type="password"
@@ -95,7 +95,7 @@ function Login() {
               />
             </div>
 
-            <button data-testid='btn-entrar' className="button btn-primary" type="submit">
+            <button className="button btn-primary" type="submit">
               Entrar
             </button>
           </form>

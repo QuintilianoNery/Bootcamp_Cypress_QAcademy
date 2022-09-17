@@ -9,6 +9,14 @@ class MapPage {
             .should('have.text', 'Escolha um food truck no mapa')
     }
 
+    createLink() {
+        cy.get('a[href="/foodtrucks/create"]')
+            .should('be.visible')
+            .click()
+        cy.url()
+            .should('be.equal', 'http://localhost:3000/foodtrucks/create')
+    }
+
 }
 
 export default new MapPage()

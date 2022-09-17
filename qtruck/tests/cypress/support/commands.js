@@ -24,20 +24,23 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+import loginPage from './pages/Login'
+import mapPage from './pages/Map'
+
 
 Cypress.Commands.add('apiResetUser', (instagram) => {
     cy.request({
         url: 'http://localhost:3333/helpers-reset',
         method: 'DELETE',
         qs: { instagram: instagram }
-    }).then(response =>{
+    }).then(response => {
         expect(response.status).to.eql(204)
         cy.log(`Usuário ${instagram} deletado com sucesso!`)
     })
 })
 
 Cypress.Commands.add('apiCreateUser', (payload) => {
-    
+
     cy.apiResetUser(payload.instagram)
 
     cy.request({
@@ -48,4 +51,17 @@ Cypress.Commands.add('apiCreateUser', (payload) => {
         expect(response.status).to.eql(201)
         cy.log(`Usuário ${payload.instagram} cadastrado com sucesso!`)
     })
+})
+
+Cypress.Commands.add('uiLogin', (user) => {
+    loginPage.go()
+    loginPage.form(user.instagram, user.password)
+    loginPage.submit()
+
+    mapPage.loggedUser(user.name)
+})
+
+Cypress.Commands.add('setGeolocacion', (lat, long) => {
+    localStorage.setItem('qtruck: latitude', lat)
+    localStorage.setItem('qtruck: longitude', long)
 })
