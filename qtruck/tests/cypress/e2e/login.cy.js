@@ -1,47 +1,76 @@
-/// <reference types="cypress" />
 const profile = require('../fixtures/profile');
 import loginPage from '../support/pages/Login'
 import mapPage from '../support/pages/Map'
 
+describe('Login Papito Bootcamp', () => {
+  it('deve logar com sucesso', () => {
+    const user = {
+      name: 'Quin',
+      instagram: '@quin.nery',
+      password: 'pwd123'
+    }
 
-describe('Login', () => {
-  beforeEach(() => {
     loginPage.go()
-  });
-  //Login com sucesso
-  it('Must login successfully', () => {
-    loginPage.form(profile.validLogin.instagram, profile.validLogin.password)
+    loginPage.form(user)
     loginPage.submit()
-    mapPage.loggedUser(profile.name)
+
+    mapPage.loggedUser(user.name)
   })
 
-  it('Must not login with incorrect password', () => {
-    loginPage.form(profile.validLogin.instagram, profile.invalidLogin.password)
+  it('nao deve logar com senha invalida', () => {
+    const user = {
+      instagram: '@quin.nery',
+      password: '123456'
+    }
+
+    loginPage.go()
+    loginPage.form(user)
     loginPage.submit()
+
     loginPage.modal.haveText('Credenciais inválidas, tente novamente!')
   })
 
-  it('Must not login with incorrect instagram', () => {
-    loginPage.form(profile.invalidLogin.instagram, profile.validLogin.password)
+  it('nao deve logar instagram inexistente', () => {
+    const user = {
+      instagram: '@quinnery',
+      password: '123456'
+    }
+
+    loginPage.go()
+    loginPage.form(user)
     loginPage.submit()
+
     loginPage.modal.haveText('Credenciais inválidas, tente novamente!')
   })
 
-  //Desafio 1  
-  it('Instagram must be mandatory', () => {
-    loginPage.form(profile.nullLogin.instagram, profile.validLogin.password)
+  it('instagram deve ser obrigatório', ()=> {
+    const user = {
+      password: '132abc'
+    }
+
+    loginPage.go()
+    loginPage.form(user)
     loginPage.submit()
+
     loginPage.modal.haveText('Por favor, informe o seu código do Instagram!')
   })
 
-  it('Password must be mandatory', () => {
-    loginPage.form(profile.validLogin.instagram, profile.nullLogin.password)
+  it('senha deve ser obrigatória', ()=> {
+    const user = {
+      instagram: '@quin.nery'
+    }
+
+    loginPage.go()
+    loginPage.form(user)
     loginPage.submit()
+
     loginPage.modal.haveText('Por favor, informe a sua senha secreta!')
   })
 
-  it('All fields are mandatory', () => {
+  it('todos os campos devem ser obrigatórios', ()=> {
+    loginPage.go()
     loginPage.submit()
+
     loginPage.modal.haveText('Por favor, informe suas credenciais!')
   })
 })

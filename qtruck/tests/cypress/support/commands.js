@@ -27,7 +27,6 @@
 import loginPage from './pages/Login'
 import mapPage from './pages/Map'
 
-
 Cypress.Commands.add('apiResetUser', (instagram) => {
     cy.request({
         url: 'http://localhost:3333/helpers-reset',
@@ -39,8 +38,7 @@ Cypress.Commands.add('apiResetUser', (instagram) => {
     })
 })
 
-Cypress.Commands.add('apiCreateUser', (payload) => {
-
+Cypress.Commands.add('apiCreateUser', (payload)=> {
     cy.apiResetUser(payload.instagram)
 
     cy.request({
@@ -53,15 +51,15 @@ Cypress.Commands.add('apiCreateUser', (payload) => {
     })
 })
 
-Cypress.Commands.add('uiLogin', (user) => {
+Cypress.Commands.add('uiLogin', (user)=> {
     loginPage.go()
-    loginPage.form(user.instagram, user.password)
+    loginPage.form(user)
     loginPage.submit()
 
     mapPage.loggedUser(user.name)
 })
 
-Cypress.Commands.add('setGeolocacion', (lat, long) => {
-    localStorage.setItem('qtruck: latitude', lat)
-    localStorage.setItem('qtruck: longitude', long)
+Cypress.Commands.add('setGeolocation', (lat, long)=> {
+    localStorage.setItem('qtruck:latitude', lat)
+    localStorage.setItem('qtruck:longitude', long)
 })

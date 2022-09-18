@@ -1,23 +1,26 @@
-import modal from '../components/modal'
+import modal from '../components/Modal'
+
 class LoginPage {
-    //Construtor com a característica Moal
-    constructor(){
+
+    constructor() {
         this.modal = modal
     }
 
-    //Função
     go() {
         cy.visit('/')
     }
 
-    form(instagram, password) {
-        //Aqui se passa o parâmetro instagram e senha para o método login que vai ser digitado no teste
-        if (instagram) cy.get('input[name="instagram"]').type(instagram, { log: false });
-        if (password) cy.get('input[name="password"]').type(password, { log: false });
+    form(user) {
+        if (user.instagram) cy.get('input[name=instagram]').type(user.instagram)
+        if (user.password) cy.get('input[name=password]').type(user.password, { log: false })
     }
 
     submit() {
-        cy.get('button[type="submit"]').click();
+        cy.contains('button', 'Entrar').click()
+    }
+
+    goToSignup() {
+        cy.contains('a', 'Cadastre-se').click()
     }
 }
 
