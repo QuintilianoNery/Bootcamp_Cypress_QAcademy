@@ -17,6 +17,11 @@ class MapPage {
             .should('be.equal', 'http://localhost:3000/foodtrucks/create')
     }
 
+    validateUrl() {
+        cy.url()
+            .should('be.equal', 'http://localhost:3000/map')
+    }
+
 }
 
 export default new MapPage()

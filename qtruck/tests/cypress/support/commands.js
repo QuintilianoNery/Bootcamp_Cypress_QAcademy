@@ -27,6 +27,22 @@
 import loginPage from './pages/Login'
 import mapPage from './pages/Map'
 
+Cypress.Commands.add('apiLogin', (user) => {
+    const payload = {
+        instagram: user.instagram,
+        password: user.password
+    }
+
+    cy.request({
+        url: 'http://localhost:3333/sessions',
+        method: 'POST',
+        body : payload
+    }).then(response=>{
+        expect(response.status).to.eql(200)
+        Cypress.env('token', response.body.token)
+    })
+})
+
 Cypress.Commands.add('apiResetUser', (instagram) => {
     cy.request({
         url: 'http://localhost:3333/helpers-reset',
@@ -38,7 +54,20 @@ Cypress.Commands.add('apiResetUser', (instagram) => {
     })
 })
 
-Cypress.Commands.add('apiCreateUser', (payload)=> {
+Cypress.Commands.add('apiCreateFoodTruck', (payload) => {
+    cy.request({
+        url: 'http://localhost:3333/foodtrucks',
+        method: 'POST',
+        headers: {
+            'Authorization': Cypress.env('token')
+        },
+        body: payload,
+    }).then(response=>{
+        expect(response.status).to.eql(201)
+    })
+})
+
+Cypress.Commands.add('apiCreateUser', (payload) => {
     cy.apiResetUser(payload.instagram)
 
     cy.request({
@@ -51,7 +80,7 @@ Cypress.Commands.add('apiCreateUser', (payload)=> {
     })
 })
 
-Cypress.Commands.add('uiLogin', (user)=> {
+Cypress.Commands.add('uiLogin', (user) => {
     loginPage.go()
     loginPage.form(user)
     loginPage.submit()
@@ -59,7 +88,7 @@ Cypress.Commands.add('uiLogin', (user)=> {
     mapPage.loggedUser(user.name)
 })
 
-Cypress.Commands.add('setGeolocation', (lat, long)=> {
+Cypress.Commands.add('setGeolocation', (lat, long) => {
     localStorage.setItem('qtruck:latitude', lat)
     localStorage.setItem('qtruck:longitude', long)
 })

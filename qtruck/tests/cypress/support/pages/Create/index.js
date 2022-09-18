@@ -33,11 +33,13 @@ class CreatePage {
     submit() {
         cy.contains('button', 'Cadastrar')
             .click()
-        cy.url()
-            .should('be.equal', 'http://localhost:3000/map')
-
     }
 
+
+    validateUrl() {
+        cy.url()
+            .should('be.equal', 'http://localhost:3000/foodtrucks/create')
+    }
 }
 
 export default new CreatePage()

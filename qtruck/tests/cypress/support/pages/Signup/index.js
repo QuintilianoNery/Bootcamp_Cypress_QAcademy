@@ -19,6 +19,11 @@ class SignupPage {
     submit() {
         cy.contains('button', 'Cadastrar').click()
     }
+
+    validateUrl() {
+        cy.url()
+            .should('be.equal', 'http://localhost:3000/signup')
+    }
 }
 
 export default new SignupPage()

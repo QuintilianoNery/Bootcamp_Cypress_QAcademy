@@ -24,6 +24,12 @@ class LoginPage {
     goToSignup() {
         cy.contains('a', 'Cadastre-se').click()
     }
+
+    
+    validateUrl() {
+        cy.url()
+            .should('be.equal', 'http://localhost:3000')
+    }
 }
 
 export default new LoginPage()
