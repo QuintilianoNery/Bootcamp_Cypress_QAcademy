@@ -8,7 +8,7 @@ export default {
 
     async resetUser(req: Request, res: Response) {
 
-        const { instagram } = req.query
+        const { instagram } = req.query      
 
         const user = await User.findOne({instagram: instagram})
 

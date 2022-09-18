@@ -16,6 +16,7 @@ describe('Login Papito Bootcamp', () => {
 
     mapPage.loggedUser(user.name)
   })
+  
 
   it('nao deve logar com senha invalida', () => {
     const user = {

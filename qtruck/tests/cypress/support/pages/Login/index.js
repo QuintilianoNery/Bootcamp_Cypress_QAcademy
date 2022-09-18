@@ -16,7 +16,9 @@ class LoginPage {
     }
 
     submit() {
-        cy.contains('button', 'Entrar').click()
+        cy.get('button[type="submit"]')
+        .should('have.text', 'Entrar')
+        .click()
     }
 
     goToSignup() {

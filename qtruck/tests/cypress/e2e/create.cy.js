@@ -16,18 +16,17 @@ describe('Recomendação', () => {
             longitude: '-41.15536183118821',
             name: 'Lanche do Neguito',
             details: 'O melhor lugar para lanchar',
-            opening_hours: 'das 14h às 20h'
+            opening_hours: 'das 14h às 20h',
+            open_on_weekends: false
         }
 
         cy.apiCreateUser(user)
         cy.uiLogin(user)
-
         mapPage.createLink()
-
         createPage.form(foodtruck)
         createPage.submit()
 
-
+        createPage.modal.haveText('Food truck cadastrado com sucesso!')
     })
 
 })
